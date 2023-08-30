@@ -11,11 +11,13 @@ public class MainMenu : MonoBehaviour{
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] TMP_Dropdown resolutionDropdown;
     [SerializeField] Slider volumeSlider;
+    [SerializeField] GameObject optionsPanel;
     
     float currentVolume;
     Resolution[] resolutions;
 
     void Start(){
+        optionsPanel.SetActive(false);
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
@@ -77,5 +79,9 @@ public class MainMenu : MonoBehaviour{
             volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
         else
             volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+    }
+
+    public void ToggleOptions(){
+            optionsPanel.SetActive(!optionsPanel.activeSelf);
     }
 }
